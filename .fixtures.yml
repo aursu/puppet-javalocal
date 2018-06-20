@@ -2,5 +2,9 @@
 # See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
 ---
 fixtures:
-    forge_modules:
-        java: "puppetlabs/java"
+  forge_modules:
+    java: "puppetlabs/java"
+    stdlib: "puppetlabs/stdlib"
+    archive: "puppet/archive"
+  repositories:
+    "lsys": "https://github.com/aursu/puppet-lsys"
