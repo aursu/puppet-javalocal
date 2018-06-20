@@ -37,7 +37,14 @@ class javalocal::alternatives (
         file { $alternative_path:
             ensure => 'link',
             target => $java_install_path,
+            notify => File['default-java'],
             tag    => 'java-alternatives',
+        }
+
+        file { "${system_path}/default-java":
+            ensure => 'link',
+            target => $java_alternative,
+            alias  => 'default-java',
         }
 
         Package <| title == 'java-common' |> -> Exec <| tag == 'update-alternatives' |>
@@ -73,6 +80,7 @@ class javalocal::alternatives (
             version               => 'absent',
             java_alternative      => $java_alternative,
             java_alternative_path => $java_alternative_path,
+            java_home             => $alternative_path,
         }
         Exec <| tag == 'update-alternatives' |> -> Class['java::config']
         File <| tag == 'java-alternatives' |> -> Class['java::config']
