@@ -74,7 +74,7 @@ class javalocal::alternatives (
             java_alternative      => $java_alternative,
             java_alternative_path => $java_alternative_path,
         }
-        Exec <| tag == 'update-alternatives' |> -> Class['java']
-        File <| tag == 'java-alternatives' |> -> Class['java']
+        Exec <| tag == 'update-alternatives' |> -> Class['java::config']
+        File <| tag == 'java-alternatives' |> -> Class['java::config']
     }
 }
