@@ -19,11 +19,22 @@ class javalocal::java8 (
     Boolean $control_java  = $javalocal::control_java,
 )
 {
+    case $facts['os']['architecture'] {
+        'i386', 'i586': { $arch = 'i586' }
+        default: { $arch = 'amd64' }
+    }
+
     if $install_path {
         $dist_install_path = $install_path
     }
     elsif $version_major =~ /(\d+)u(\d+)/ {
-        $dist_install_path = "${java_se}1.${1}.0_${2}"
+        if $2 > 162 {
+            $dist_install_path = "${java_se}1.${1}.0_${2}-${arch}"
+        }
+        else
+        {
+            $dist_install_path = "${java_se}1.${1}.0_${2}"
+        }
     }
     else {
         $dist_install_path = "${java_se}-${version_major}"
