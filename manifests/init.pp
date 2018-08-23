@@ -8,7 +8,7 @@
 #    String. One of 'jdk' or 'jre' depends on Java distribution set
 #
 #  [*install_path*]
-#    String. Default is jdk1.8.0_171. It is directory inside system Java path
+#    String. Default is jdk1.8.0_181. It is directory inside system Java path
 #    which consts of Oracle Java distribution
 #
 #  [*control_java*]
