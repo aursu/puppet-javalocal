@@ -22,6 +22,12 @@ class javalocal::alternatives (
     $java_path = "${system_path}/${java_install_path}"
     $alternative_path = "${system_path}/${java_alternative}"
 
+    file { $alternative_path:
+        ensure => 'link',
+        target => $java_install_path,
+        tag    => 'java-alternatives',
+    }
+
     if $facts['os']['family'] == 'Debian' {
         $java_alternative_path = $java_se ? {
             'jdk'   => "${alternative_path}/jre/bin/java",
@@ -34,17 +40,11 @@ class javalocal::alternatives (
             tag     => 'java-alternatives',
         }
 
-        file { $alternative_path:
-            ensure => 'link',
-            target => $java_install_path,
-            notify => File['default-java'],
-            tag    => 'java-alternatives',
-        }
-
         file { "${system_path}/default-java":
-            ensure => 'link',
-            target => $java_alternative,
-            alias  => 'default-java',
+            ensure    => 'link',
+            target    => $java_alternative,
+            alias     => 'default-java',
+            subscribe => File[$alternative_path],
         }
 
         Package <| title == 'java-common' |> -> Exec <| tag == 'update-alternatives' |>
