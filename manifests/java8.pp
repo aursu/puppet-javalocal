@@ -25,29 +25,29 @@ class javalocal::java8 (
     }
 
     if $install_path {
-        $dist_install_path = $install_path
-        $old_install_path = $install_path
+        $base_install_path = $install_path
+        $dist_install_path = $base_install_path
     }
     elsif $version_major =~ /(\d+)u(\d+)/ {
         $update = 0 + $2
-        $old_install_path = "${java_se}1.${1}.0_${2}"
+        $base_install_path = "${java_se}1.${1}.0_${2}"
         if $update > 162 {
-            $dist_install_path = "${old_install_path}-${arch}"
+            $dist_install_path = "${base_install_path}-${arch}"
         }
         else
         {
-            $dist_install_path = $old_install_path
+            $dist_install_path = $base_install_path
         }
 
     }
     else {
-        $dist_install_path = "${java_se}-${version_major}"
-        $old_install_path = $dist_install_path
+        $base_install_path = "${java_se}-${version_major}"
+        $dist_install_path = $base_install_path
     }
 
     # trick for puppet module puppetlabs/java version 3.0.0 and below
-    if $old_install_path != $dist_install_path {
-        file { "${system_path}/${old_install_path}":
+    if $base_install_path != $dist_install_path {
+        file { "${system_path}/${base_install_path}":
             ensure => 'link',
             target => $dist_install_path,
             before => Java::Oracle[$dist_install_path],
