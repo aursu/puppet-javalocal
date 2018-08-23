@@ -73,9 +73,7 @@ class javalocal::alternatives (
         }
     }
 
-    notify { $java_alternative_path:
-        ensure => 'present'
-    }
+    notify { $java_alternative_path: }
 
     if $control_java {
         $dummy_package_name = "oracle-java8-${java_se}"
