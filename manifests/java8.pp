@@ -28,7 +28,8 @@ class javalocal::java8 (
         $dist_install_path = $install_path
     }
     elsif $version_major =~ /(\d+)u(\d+)/ {
-        if $2 > 162 {
+        $update = 0 + $2
+        if $update > 162 {
             $dist_install_path = "${java_se}1.${1}.0_${2}-${arch}"
         }
         else
