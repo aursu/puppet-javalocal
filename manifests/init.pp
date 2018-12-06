@@ -21,14 +21,14 @@
 # @example
 #   include javalocal
 class javalocal (
-    String  $version_major,
-    String  $version_minor,
-    String  $url_hash,
     String  $java_se,
     String  $system_path,
     Optional[String]
             $install_path,
     Boolean $control_java,
-)
+    String  $version_major = $javalocal::params::java_version_major,
+    String  $version_minor = $javalocal::params::java_version_minor,
+    String  $url_hash      = $javalocal::params::java_url_hash,
+) inherits javalocal::params 
 {
 }

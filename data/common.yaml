@@ -1,8 +1,5 @@
 ---
 javalocal::control_java: true
-javalocal::version_major: '8u181'
-javalocal::version_minor: 'b13'
-javalocal::url_hash: '96a7b8442fe848ef90c96a2fad6ed6d1'
 javalocal::java_se: 'jdk'
 javalocal::system_path: '/usr/java'
 javalocal::install_path: ~
