@@ -8,7 +8,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/java",
-      "version_requirement": ">= 2.4.0 < 3.0.0"
+      "version_requirement": ">= 2.4.0 < 7.0.0"
     },
     {
       "name": "aursu/lsys",
@@ -16,7 +16,7 @@
     },
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 3.2.0 < 5.0.0"
+      "version_requirement": ">= 3.2.0 < 7.0.0"
     }
   ],
   "operatingsystem_support": [
