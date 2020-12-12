@@ -5,9 +5,9 @@
 # @example
 #   include javalocal::java8
 class javalocal::java8 (
-    Lsys::Java8Major
+    Javalocal::Java8Major
             $version_major = $javalocal::version_major,
-    Lsys::Java8Minor
+    Javalocal::Java8Minor
             $version_minor = $javalocal::version_minor,
     String  $url_hash      = $javalocal::url_hash,
     Enum['jre', 'jdk']

@@ -58,7 +58,7 @@ class javalocal::alternatives (
                 String => [$x, "jre/bin/${x}"],
                 Array  => $x
             }
-            exec {"update-alternatives --install /usr/bin/${xname} ${xname} ${alternative_path}/${xpath} ${java_alternative_prio}":
+            exec { "update-alternatives --install /usr/bin/${xname} ${xname} ${alternative_path}/${xpath} ${java_alternative_prio}":
                 unless => "grep -q ${alternative_path} /var/lib/dpkg/alternatives/${xname}",
                 path   => '/bin:/usr/bin:/sbin:/usr/sbin',
                 tag    => 'update-alternatives',
